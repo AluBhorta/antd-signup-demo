@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/antd-signup-demo/static/css/main.5facb584.chunk.css",
+    "main.js": "/antd-signup-demo/static/js/main.272b7c4b.chunk.js",
+    "main.js.map": "/antd-signup-demo/static/js/main.272b7c4b.chunk.js.map",
+    "runtime-main.js": "/antd-signup-demo/static/js/runtime-main.575bc262.js",
+    "runtime-main.js.map": "/antd-signup-demo/static/js/runtime-main.575bc262.js.map",
+    "static/css/2.220ccb42.chunk.css": "/antd-signup-demo/static/css/2.220ccb42.chunk.css",
+    "static/js/2.98f6e92f.chunk.js": "/antd-signup-demo/static/js/2.98f6e92f.chunk.js",
+    "static/js/2.98f6e92f.chunk.js.map": "/antd-signup-demo/static/js/2.98f6e92f.chunk.js.map",
+    "index.html": "/antd-signup-demo/index.html",
+    "precache-manifest.bd2f4c5b4ade73c645dc7803b60b15c9.js": "/antd-signup-demo/precache-manifest.bd2f4c5b4ade73c645dc7803b60b15c9.js",
+    "service-worker.js": "/antd-signup-demo/service-worker.js",
+    "static/css/2.220ccb42.chunk.css.map": "/antd-signup-demo/static/css/2.220ccb42.chunk.css.map",
+    "static/css/main.5facb584.chunk.css.map": "/antd-signup-demo/static/css/main.5facb584.chunk.css.map",
+    "static/js/2.98f6e92f.chunk.js.LICENSE.txt": "/antd-signup-demo/static/js/2.98f6e92f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.575bc262.js",
+    "static/css/2.220ccb42.chunk.css",
+    "static/js/2.98f6e92f.chunk.js",
+    "static/css/main.5facb584.chunk.css",
+    "static/js/main.272b7c4b.chunk.js"
+  ]
+}
