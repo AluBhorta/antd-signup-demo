@@ -1,29 +1,19 @@
 import { Input } from "antd";
 import React from "react";
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from "react-places-autocomplete";
+import PlacesAutocomplete from "react-places-autocomplete";
 
 const LocationInput: React.FC<{
   location: string;
   setLocation: React.Dispatch<React.SetStateAction<string>>;
 }> = ({ location, setLocation }) => {
-  const handleSelect = (address: string) => {
-    geocodeByAddress(address)
-      .then((results) => getLatLng(results[0]))
-      .then((latLng) => console.log("Success", latLng))
-      .catch((error) => console.error("Error", error));
-  };
-
   return (
     <>
       <PlacesAutocomplete
         value={location}
-        onChange={(address) => setLocation(address)}
-        onSelect={handleSelect}
+        onChange={setLocation}
+        onSelect={setLocation}
       >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+        {({ getInputProps, suggestions, getSuggestionItemProps }) => (
           <>
             <div>
               <Input
@@ -33,13 +23,11 @@ const LocationInput: React.FC<{
                 })}
               />
               <div className="autocomplete-dropdown-container">
-                {suggestions.map((suggestion) => {
-                  return (
-                    <div {...getSuggestionItemProps(suggestion)}>
-                      <span>{suggestion.description}</span>
-                    </div>
-                  );
-                })}
+                {suggestions.map((suggestion) => (
+                  <div {...getSuggestionItemProps(suggestion)}>
+                    <span>{suggestion.description}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </>

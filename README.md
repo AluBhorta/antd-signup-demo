@@ -1,6 +1,8 @@
 # Simple AntD Signup Demo
 
-NOTE: Replace the `API_KEY` with your Google API Key on the script tag of `public/index.html` (line no. 28).
+Simple React project demonstrating signup form validation and Google Places autocomplete, styled using Ant Design.
+
+NOTE: Replace the `API_KEY` with your Google API Key on the script tag of `public/index.html` to activate Google Places autocomplete. You can get yours' from [here](https://developers.google.com/maps/documentation/javascript/places).
 
 ## Available Scripts
 
