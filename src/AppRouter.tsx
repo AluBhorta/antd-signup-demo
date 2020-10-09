@@ -22,7 +22,7 @@ const AppRouter: React.FC = ({ children }) => {
             <DashboardPage />
           </Route>
 
-          <Redirect to="/signup" from="/" exact />
+          <Redirect to="/signup" from="*" />
         </Switch>
       </Router>
     </>

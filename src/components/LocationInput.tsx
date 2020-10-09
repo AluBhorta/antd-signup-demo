@@ -1,3 +1,4 @@
+import { Input } from "antd";
 import { GoogleApiWrapper } from "google-maps-react";
 import React, { useState } from "react";
 import PlacesAutocomplete, {
@@ -5,11 +6,11 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 
-const LocationInput: React.FC = () => {
-  const [address, setAddress] = useState("");
+const LocationInput: React.FC<{}> = () => {
+  const [location, setLocation] = useState("");
 
   const handleChange = (address: string) => {
-    setAddress(address);
+    setLocation(address);
   };
 
   const handleSelect = (address: string) => {
@@ -22,13 +23,13 @@ const LocationInput: React.FC = () => {
   return (
     <>
       <PlacesAutocomplete
-        value={address}
+        value={location}
         onChange={handleChange}
         onSelect={handleSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
-            <input
+            <Input
               {...getInputProps({
                 placeholder: "Enter location...",
                 className: "location-search-input",
@@ -53,7 +54,7 @@ const LocationInput: React.FC = () => {
   );
 };
 
-export default GoogleApiWrapper(() => ({
+export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GOOGLE_API_KEY || "",
   libraries: ["places"],
-}))(LocationInput);
+})(LocationInput);

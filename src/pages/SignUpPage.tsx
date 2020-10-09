@@ -1,60 +1,94 @@
+import { Button, Card, Col, Input, Row, Select, Space } from "antd";
 import React, { useState } from "react";
 import LocationInput from "../components/LocationInput";
 import { GenderInput } from "../models";
+const { Option } = Select;
 
 const SignUpPage: React.FC = () => {
   const [firstName, setFirstName] = useState("");
   const [gender, setGender] = useState<GenderInput>();
-  const [location, setLocation] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [location, setLocation] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSubmit = (e: any) => {
+    console.log("e", e);
+  };
 
   return (
-    <div>
-      <h1>Sign Up</h1>
+    <>
+      <Card>
+        <Row>
+          <Col span={12} offset={6}>
+            <h1>Sign Up</h1>
+            <form>
+              <div>
+                <label>First Name</label>
+                <Input
+                  value={firstName}
+                  placeholder="Enter first name..."
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              </div>
 
-      <div>
-        <form>
-          <div>
-            <label>First Name</label>
-            <input type="text" />
-          </div>
+              <div>
+                <label>Gender</label>
+                <Select
+                  value={gender}
+                  onChange={(_gender) => setGender(_gender)}
+                >
+                  <Option value="MALE">Male</Option>
+                  <Option value="FEMALE">Female</Option>
+                  <Option value="OTHER">Other</Option>
+                </Select>
+              </div>
 
-          <div>
-            <label>Gender</label>
-            <select>
-              <option>Male</option>
-              <option>Female</option>
-              <option>Other</option>
-            </select>
-          </div>
+              <div>
+                <label>Location</label>
+                <LocationInput />
+              </div>
 
-          <div>
-            <label>Location</label>
-            <LocationInput />
-          </div>
+              <div>
+                <label>Email</label>
+                <Input
+                  value={email}
+                  type="email"
+                  placeholder="Enter email..."
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
 
-          <div>
-            <label>Email</label>
-            <input type="text" />
-          </div>
+              <div>
+                <label>Password</label>
+                <Input
+                  value={password}
+                  type="password"
+                  placeholder="Enter password..."
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
 
-          <div>
-            <label>Password</label>
-            <input type="password" />
-          </div>
+              <div>
+                <label>Confirm Password</label>
+                <Input
+                  value={confirmPassword}
+                  type="password"
+                  placeholder="Enter password again..."
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </div>
 
-          <div>
-            <label>Confirm Password</label>
-            <input type="password" />
-          </div>
-
-          <div>
-            <button type="submit">Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
+              <div style={{ textAlign: "center", marginTop: "20px" }}>
+                <Button type="primary" onClick={handleSubmit}>
+                  Submit
+                </Button>
+              </div>
+            </form>
+          </Col>
+        </Row>
+      </Card>
+    </>
   );
 };
 
