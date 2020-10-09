@@ -9,24 +9,24 @@ import {
 import DashboardPage from "./pages/DashboardPage";
 import SignUpPage from "./pages/SignUpPage";
 
-const AppRoutes: React.FC = ({ children }) => {
+const AppRouter: React.FC = ({ children }) => {
   return (
     <>
       <Router>
         {children}
         <Switch>
-          <Route path="/signup">
+          <Route path="/signup" exact>
             <SignUpPage />
           </Route>
-          <Route path="/dashboard">
+          <Route path="/dashboard" exact>
             <DashboardPage />
           </Route>
 
-          <Redirect to="/signup" from="/" />
+          <Redirect to="/signup" from="/" exact />
         </Switch>
       </Router>
     </>
   );
 };
 
-export default AppRoutes;
+export default AppRouter;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import LocationInput from "../components/LocationInput";
 import { GenderInput } from "../models";
 
 const SignUpPage: React.FC = () => {
@@ -30,7 +31,7 @@ const SignUpPage: React.FC = () => {
 
           <div>
             <label>Location</label>
-            <input type="text" />
+            <LocationInput />
           </div>
 
           <div>
