@@ -1,7 +1,8 @@
 import { Card, Input, Table } from "antd";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { UserContext } from "../AppState";
+const { Search } = Input;
 
 const columns = [
   {
@@ -36,26 +37,54 @@ const dataSource = [
   },
   {
     key: "2",
-    firstName: "Jane",
+    firstName: "Jilani",
     gender: "FEMALE",
-    location: "23 Baker Street, RU",
-    email: "jane@example.com",
+    location: "Ahem, Sk",
+    email: "jil@example.com",
   },
 ];
 
 const DashboardPage: React.FC = () => {
   const { user } = useContext(UserContext);
-  if (user === null) {
+  const [searchText, setSearchText] = useState("");
+  const [allData, setallData] = useState(dataSource);
+  const [filteredData, setFilteredData] = useState(allData);
+
+  useEffect(() => {
+    if (user) {
+      const newUser = { ...user, key: "3" };
+      setFilteredData([...filteredData, newUser]);
+      setallData([...allData, newUser]);
+    }
+    return () => {};
+  }, []);
+
+  if (!user) {
     return <Redirect to="/signup" />;
   }
-
-  dataSource.push({ ...user, key: "3" });
 
   return (
     <>
       <Card>
         <h1>Dashboard</h1>
-        <Table dataSource={dataSource} columns={columns} />
+        <Search
+          placeholder="Search via email"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+          }}
+          onSearch={(value) => {
+            setFilteredData(
+              searchText === ""
+                ? allData
+                : allData.filter(
+                    (data) => data.email.indexOf(searchText) !== -1
+                  )
+            );
+          }}
+          style={{ width: 200, marginBottom: "10px" }}
+        />
+        <Table dataSource={filteredData} columns={columns} />
       </Card>
     </>
   );
