@@ -1,5 +1,4 @@
 import { Input } from "antd";
-
 import React from "react";
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -25,26 +24,25 @@ const LocationInput: React.FC<{
         onSelect={handleSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <Input
-              {...getInputProps({
-                placeholder: "Enter location...",
-                className: "location-search-input",
-              })}
-            />
-
-            <div className="autocomplete-dropdown-container">
-              {loading && <div>Loading...</div>}
-
-              {suggestions.map((suggestion) => {
-                return (
-                  <div {...getSuggestionItemProps(suggestion)}>
-                    <span>{suggestion.description}</span>
-                  </div>
-                );
-              })}
+          <>
+            <div>
+              <Input
+                {...getInputProps({
+                  placeholder: "Enter location...",
+                  className: "location-search-input",
+                })}
+              />
+              <div className="autocomplete-dropdown-container">
+                {suggestions.map((suggestion) => {
+                  return (
+                    <div {...getSuggestionItemProps(suggestion)}>
+                      <span>{suggestion.description}</span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          </>
         )}
       </PlacesAutocomplete>
     </>

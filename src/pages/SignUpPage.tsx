@@ -1,20 +1,47 @@
 import { Button, Card, Col, Input, Row, Select } from "antd";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { MockApiClient } from "../api/MockApiClient";
+import { UserContext } from "../AppState";
 import LocationInput from "../components/LocationInput";
-import { GenderInput } from "../models";
+import { GenderInput, User } from "../models";
 
 const { Option } = Select;
 
 const SignUpPage: React.FC = () => {
   const [firstName, setFirstName] = useState("");
-  const [gender, setGender] = useState<GenderInput>();
+  const [gender, setGender] = useState<GenderInput>("MALE");
   const [location, setLocation] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSubmit = (e: any) => {
-    console.log("e", e);
+  const { push } = useHistory();
+  const { updateUser } = useContext(UserContext);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      return alert("Passwords do not match! Try again.");
+    }
+
+    const newUser: User = {
+      firstName,
+      gender,
+      location,
+      email,
+    };
+    const apiClient = new MockApiClient();
+
+    apiClient.signupNewUser(newUser, password).then((successful) => {
+      if (successful) {
+        updateUser(newUser);
+        push("/dashboard");
+      } else {
+        alert("Error! Unable to singup user.");
+      }
+    });
   };
 
   return (
@@ -23,13 +50,14 @@ const SignUpPage: React.FC = () => {
         <Row>
           <Col span={12} offset={6}>
             <h1>Sign Up</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div>
                 <label>First Name</label>
                 <Input
                   value={firstName}
                   placeholder="Enter first name..."
                   onChange={(e) => setFirstName(e.target.value)}
+                  required
                 />
               </div>
 
@@ -60,6 +88,7 @@ const SignUpPage: React.FC = () => {
                   type="email"
                   placeholder="Enter email..."
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
 
@@ -70,6 +99,7 @@ const SignUpPage: React.FC = () => {
                   type="password"
                   placeholder="Enter password..."
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </div>
 
@@ -80,11 +110,11 @@ const SignUpPage: React.FC = () => {
                   type="password"
                   placeholder="Enter password again..."
                   onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
                 />
               </div>
-
               <div style={{ textAlign: "center", marginTop: "20px" }}>
-                <Button type="primary" onClick={handleSubmit}>
+                <Button type="primary" htmlType="submit">
                   Submit
                 </Button>
               </div>

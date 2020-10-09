@@ -1,4 +1,4 @@
-# Simple Signup Demo
+# Simple AntD Signup Demo
 
 NOTE: Replace the `API_KEY` with your Google API Key on the script tag of `public/index.html` (line no. 28).
 
