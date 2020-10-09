@@ -1,7 +1,8 @@
-import { Button, Card, Col, Input, Row, Select, Space } from "antd";
+import { Button, Card, Col, Input, Row, Select } from "antd";
 import React, { useState } from "react";
 import LocationInput from "../components/LocationInput";
 import { GenderInput } from "../models";
+
 const { Option } = Select;
 
 const SignUpPage: React.FC = () => {
@@ -34,9 +35,12 @@ const SignUpPage: React.FC = () => {
 
               <div>
                 <label>Gender</label>
+                <br />
                 <Select
                   value={gender}
                   onChange={(_gender) => setGender(_gender)}
+                  style={{ minWidth: "100px" }}
+                  placeholder="Select gender..."
                 >
                   <Option value="MALE">Male</Option>
                   <Option value="FEMALE">Female</Option>
@@ -46,7 +50,7 @@ const SignUpPage: React.FC = () => {
 
               <div>
                 <label>Location</label>
-                <LocationInput />
+                <LocationInput location={location} setLocation={setLocation} />
               </div>
 
               <div>

@@ -1,6 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Simple Signup Demo
+
+NOTE: Replace the `API_KEY` with your Google API Key on the script tag of `public/index.html` (line no. 28).
 
 ## Available Scripts
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
 
